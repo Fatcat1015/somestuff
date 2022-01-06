@@ -24,7 +24,7 @@
       "url": "https://packages-v2.unity.cn"
     },
     "com.unity.2d.path": {
-      "version": "4.0.1",
+      "version": "4.0.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -123,13 +123,6 @@
     "com.unity.nuget.newtonsoft-json": {
       "version": "2.0.0",
       "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages-v2.unity.cn"
-    },
-    "com.unity.plasticscm-cn": {
-      "version": "1.2.2-preview",
-      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages-v2.unity.cn"

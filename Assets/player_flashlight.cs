@@ -9,6 +9,10 @@ public class player_flashlight : MonoBehaviour
     private bool flashlight = false;
     //[SerializeField] private float timeTolight = 1f;
     //private float lighttimer = 0;
+    private Vector3 mouse_pos;
+    public Transform target;
+    private Vector3 object_pos;
+    private float angle;
 
     void Start()
     {
@@ -39,6 +43,19 @@ public class player_flashlight : MonoBehaviour
             flashlight = false;
             lightarea.SetActive(flashlight);
         }*/
+
+        //mouse rotation functions:
+
+        mouse_pos = Input.mousePosition;
+        mouse_pos.z = -20;
+        object_pos = gameObject.GetComponent<Rigidbody2D>().position;
+        mouse_pos.x = mouse_pos.x - object_pos.x;
+        mouse_pos.y = mouse_pos.y - object_pos.y;
+        angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        //somehow this works i copied from some random website idk how it works tho
+
     }
 
     void Light()//light function

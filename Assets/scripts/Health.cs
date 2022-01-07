@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;
     private int Max_health = 100;//max health
-    [SerializeField] private float cooldowntimer = 0f;
+    private float cooldowntimer = 0f;
     [SerializeField] private float cooldown = 0.5f;
 
     void Update()

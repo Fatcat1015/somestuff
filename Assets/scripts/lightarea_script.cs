@@ -25,7 +25,6 @@ public class lightarea_script : MonoBehaviour
         {
             Health cooldowntimer = collider.GetComponent<Health>();
             cooldowntimer.resettimer();
-            Debug.Log("reset on enter");
         }
     }
 
@@ -35,7 +34,6 @@ public class lightarea_script : MonoBehaviour
         {
             Health cooldowntimer = collider.GetComponent<Health>();
             cooldowntimer.resettimer();
-            Debug.Log("reset on exit");
         }
     }
 }

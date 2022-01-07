@@ -9,10 +9,9 @@ public class player_flashlight : MonoBehaviour
     private bool flashlight = false;
     //[SerializeField] private float timeTolight = 1f;
     //private float lighttimer = 0;
-    private Vector3 mouse_pos;
-    public Transform target;
-    private Vector3 object_pos;
-    private float angle;
+    private bool distract_cd = false;
+    public GameObject projectile;
+    public Transform spawnpoint;
 
     void Start()
     {
@@ -33,7 +32,16 @@ public class player_flashlight : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.E))//throw distraction
         {
-            Distract();
+            if(distract_cd != true)
+            {
+                distract_cd = true;
+                Distract();
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))//throw distraction
+        {
+            distract_cd = false;
         }
 
         //timer function
@@ -51,15 +59,8 @@ public class player_flashlight : MonoBehaviour
 
         //mouse rotation functions:
 
-        mouse_pos = Input.mousePosition;
-        mouse_pos.z = -20;
-        object_pos = gameObject.GetComponent<Rigidbody2D>().position;
-        mouse_pos.x = mouse_pos.x - object_pos.x;
-        mouse_pos.y = mouse_pos.y - object_pos.y;
-        angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle-30);
-
-        //somehow this works i copied from some random website idk how it works tho
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
     }
 
@@ -78,5 +79,6 @@ public class player_flashlight : MonoBehaviour
     void Distract()
     {
         //spawn a projectile that emits light when struck the ground
+        Instantiate(projectile, spawnpoint.position, spawnpoint.rotation);
     }
 }

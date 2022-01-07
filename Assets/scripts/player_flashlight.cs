@@ -31,6 +31,11 @@ public class player_flashlight : MonoBehaviour
             Deactivate_Light();
         }
 
+        if(Input.GetKeyDown(KeyCode.E))//throw distraction
+        {
+            Distract();
+        }
+
         //timer function
         /*if(flashlight)//timer
         {
@@ -52,7 +57,7 @@ public class player_flashlight : MonoBehaviour
         mouse_pos.x = mouse_pos.x - object_pos.x;
         mouse_pos.y = mouse_pos.y - object_pos.y;
         angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0, 0, angle-30);
 
         //somehow this works i copied from some random website idk how it works tho
 
@@ -68,5 +73,10 @@ public class player_flashlight : MonoBehaviour
     {
         flashlight = false;
         lightarea.SetActive(flashlight);
+    }
+
+    void Distract()
+    {
+        //spawn a projectile that emits light when struck the ground
     }
 }

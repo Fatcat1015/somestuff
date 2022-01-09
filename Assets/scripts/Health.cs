@@ -17,6 +17,12 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void SetHealth(int Maxhealth, int health)
+    {
+        this.Max_health = Maxhealth;
+        this.health = health;
+    }
+
     public void Damage(int amount)//damage
     {
         if(amount < 0)
@@ -27,7 +33,6 @@ public class Health : MonoBehaviour
         if (cooldowntimer >= cooldown)
         {
             cooldowntimer = 0;
-            Debug.Log("reset in stay");
         }
 
         if (cooldowntimer == 0)
@@ -60,7 +65,7 @@ public class Health : MonoBehaviour
 
     private void Die()//die
     {
-        Debug.Log("dead");
+        Destroy(gameObject);
     }
 
     public void resettimer()//reset cool down timer

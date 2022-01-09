@@ -8,10 +8,61 @@ public class player_movement : MonoBehaviour
 	public Rigidbody2D rb;
 	Vector2 movement;
 
+    public Animator pc_animator;
+
+    //Animation anim;
+
+
+    void Start()
+    {
+        //anim = GetComponent<Animation>();
+        pc_animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        //character moving animation
+        if(movement.x != 0 || movement.y != 0)//if moving, play animation
+        {
+            //pc_animator.enabled = true;
+            pc_animator.speed = 0.5f;
+            pc_animator.SetBool("idle", false);
+            
+            
+            if(movement.x == 0)
+            {
+                pc_animator.SetInteger("left", 0);
+                if (movement.y <= 0)
+                {
+                    pc_animator.SetInteger("up", -1);
+                }
+                else
+                {
+                    pc_animator.SetInteger("up", 1);
+                }
+            }
+            else if (movement.x <= 0)
+            {
+                pc_animator.SetInteger("left", 1);
+                pc_animator.SetInteger("up", 0);
+            }
+            else
+            {
+                pc_animator.SetInteger("left", -1);
+                pc_animator.SetInteger("up", 0);
+            }
+        }
+        else
+        {
+            pc_animator.SetBool("idle", true);
+            pc_animator.SetInteger("left", 0);
+            pc_animator.SetInteger("up", 0);
+            //pc_animator.enabled = false;
+        }
+
     }
 
     void FixedUpdate()

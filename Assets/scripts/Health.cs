@@ -38,6 +38,7 @@ public class Health : MonoBehaviour
         if (cooldowntimer == 0)
         {
             this.health -= amount;
+            StartCoroutine(VisualIndicator(Color.red));
         }
 
         cooldowntimer += Time.deltaTime;
@@ -59,8 +60,16 @@ public class Health : MonoBehaviour
         else
         {
             this.health += amount;
+            StartCoroutine(VisualIndicator(Color.green));
         }
 
+    }
+
+    private IEnumerator VisualIndicator(Color color)
+    {
+        GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.15f);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void Die()//die

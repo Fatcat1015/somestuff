@@ -16,6 +16,7 @@ public class player_flashlight : MonoBehaviour
     void Start()
     {
         lightarea = transform.GetChild(0).gameObject;//get child as area
+        lightarea.SetActive(false);
     }
 
     void Update()

@@ -27,19 +27,19 @@ public class enemy_movement : MonoBehaviour
         //hit: when under the influence of the light, slow down
     }
 
-    private void Setenemyvalue()
+    private void Setenemyvalue()//set health and etc
     {
         GetComponent<Health>().SetHealth(data.hp, data.hp);
         damage = data.damage;
         speed = data.speed;
     }
 
-    private void seekplayer()
+    private void seekplayer()//go towards the player
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)//damage player
     {
         if (collision.CompareTag("Player"))
         {

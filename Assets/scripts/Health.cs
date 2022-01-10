@@ -11,13 +11,13 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (health <= 0)
+        if (health <= 0)//die
         {
             Die();
         }
     }
 
-    public void SetHealth(int Maxhealth, int health)
+    public void SetHealth(int Maxhealth, int health)//set health
     {
         this.Max_health = Maxhealth;
         this.health = health;

@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
         this.health = health;
     }
 
-    public void Damage(int amount)//damage
+    public void ContinuousDamage(int amount)//damage
     {
         if(amount < 0)
         {
@@ -42,7 +42,19 @@ public class Health : MonoBehaviour
         }
 
         cooldowntimer += Time.deltaTime;
+    }
 
+    public void Damage(int amount)//damage
+    {
+        if (amount < 0)
+        {
+            throw new System.ArgumentOutOfRangeException("cannot have negative Damage");//error
+        }
+        else
+        {
+            this.health -= amount;
+            StartCoroutine(VisualIndicator(Color.red));
+        }
 
     }
 

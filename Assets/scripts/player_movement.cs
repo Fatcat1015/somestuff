@@ -12,6 +12,8 @@ public class player_movement : MonoBehaviour
 
     //Animation anim;
 
+    public bool light_on = false;
+    public GameObject lightarea;
 
     void Start()
     {
@@ -21,6 +23,10 @@ public class player_movement : MonoBehaviour
 
     void Update()
     {
+
+        //if light is on
+        light_on = lightarea.activeSelf;
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 

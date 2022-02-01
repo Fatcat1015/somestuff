@@ -11,12 +11,26 @@ public class enemy_detect : MonoBehaviour
 
     public bool if_found_player = false;
 
+    public GameObject player;
+
+    public float aggro = 7;
+    public float original = 5;
+
     void Start()
     {
         detect_range = GetComponent<CircleCollider2D>();
         enemy = transform.parent.gameObject;
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
+
+        void Update()//set radius depending on the player's flashlight
+        {
+                if(player.GetComponent<player_movement>().light_on){
+                    detect_range.radius = aggro;
+                }else{
+                    detect_range.radius = original;
+                }
+        }
 
     IEnumerator detect_timer()//continue go towards player
     {

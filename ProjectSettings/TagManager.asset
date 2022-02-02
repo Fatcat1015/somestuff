@@ -54,3 +54,6 @@ TagManager:
   - name: Units
     uniqueID: 3393972251
     locked: 0
+  - name: New Layer
+    uniqueID: 1866504673
+    locked: 0

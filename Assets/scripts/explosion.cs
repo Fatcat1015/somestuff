@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.Experimental.Rendering.Universal;
+
 public class explosion : MonoBehaviour
 {
-    public Light explo_l;
-    private float life_timer = 1.25f;
+    public Light2D explo_l;
+    private float life_timer = 3f;
     private float timer = 0;
-    private float acc_range = 1f;
-    private float max_range = 1f;
+    private float acc_intensity = 0.5f;
+    private float max_intensity = 1f;
 
     void Start()
     {
-        explo_l.range = 0;
+        explo_l.intensity = 0;
     }
 
     void FixedUpdate()
     {
         timer += Time.deltaTime;
 
-        if(explo_l.range >= max_range)explo_l.range = max_range;
-        else explo_l.range += acc_range * Time.deltaTime;
+        if(explo_l.intensity >= max_intensity)explo_l.intensity = max_intensity;
+        else explo_l.intensity += acc_intensity * Time.deltaTime;
 
         if (timer >= life_timer) Destroy(gameObject);
     }

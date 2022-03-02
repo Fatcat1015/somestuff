@@ -86,7 +86,15 @@ public class Health : MonoBehaviour
 
     private void Die()//die
     {
-        Destroy(gameObject);
+        if (gameObject.CompareTag("Player"))
+        {
+            FindObjectOfType<player_movement>().dead = true;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     public void resettimer()//reset cool down timer

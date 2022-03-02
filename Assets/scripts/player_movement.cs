@@ -8,12 +8,16 @@ public class player_movement : MonoBehaviour
 	public Rigidbody2D rb;
 	Vector2 movement;
 
+    public bool dead = false;
+
     public Animator pc_animator;
 
     //Animation anim;
 
     public bool light_on = false;
     public GameObject lightarea;
+
+    public Transform deadscreen;
 
     void Start()
     {
@@ -27,8 +31,12 @@ public class player_movement : MonoBehaviour
         //if light is on
         light_on = lightarea.activeSelf;
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (!dead)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            gameObject.GetComponent<Rigidbody2D>().MovePosition(deadscreen.position);
+        }
 
         //character moving animation
         if(movement.x != 0 || movement.y != 0)//if moving, play animation
@@ -75,4 +83,6 @@ public class player_movement : MonoBehaviour
     {
     	rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //move player
     }
+
+
 }

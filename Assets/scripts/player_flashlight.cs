@@ -7,11 +7,12 @@ public class player_flashlight : MonoBehaviour
     private GameObject lightarea = default;
 
     private bool flashlight = false;
-    //[SerializeField] private float timeTolight = 1f;
-    //private float lighttimer = 0;
+    public float timeTolight = 2f;
+    public float lighttimer = 0;
     private bool distract_cd = false;
     public GameObject projectile;
     public Transform spawnpoint;
+    public bool activated = false;
 
     void Start()
     {
@@ -21,15 +22,19 @@ public class player_flashlight : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))//determine if light
+        if (flashlight)
         {
-            Light();
-        }
+            if (Input.GetKeyDown(KeyCode.Space))//determine if light
+            {
+                Light();
+            }
 
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            Deactivate_Light();
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Deactivate_Light();
+            }
         }
+        
 
         if(Input.GetKeyDown(KeyCode.E))//throw distraction
         {
@@ -46,17 +51,25 @@ public class player_flashlight : MonoBehaviour
         }
 
         //timer function
-        /*if(flashlight)//timer
+        if(flashlight && activated)//timer
         {
             lighttimer += Time.deltaTime;
+        }else if (flashlight)
+        {
+            lighttimer -= 2*Time.deltaTime;
+        }
+        else
+        {
+            lighttimer -= Time.deltaTime;
         }
 
         if(lighttimer >= timeTolight)//reset timer
         {
             lighttimer = 0;
             flashlight = false;
-            lightarea.SetActive(flashlight);
-        }*/
+            StartCoroutine(cooldown());
+            //lightarea.SetActive(flashlight);
+        }
 
         //mouse rotation functions:
 
@@ -65,15 +78,21 @@ public class player_flashlight : MonoBehaviour
 
     }
 
+    IEnumerator cooldown()
+    {
+        yield return new WaitForSeconds(1);
+        flashlight = true;
+    }
+
     void Light()//light function
     {
-        flashlight = true;
+        activated = true;
         lightarea.SetActive(flashlight);
     }
 
     void Deactivate_Light()//disable light funciton
     {
-        flashlight = false;
+        activated = false;
         lightarea.SetActive(flashlight);
     }
 

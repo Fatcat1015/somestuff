@@ -37,6 +37,10 @@ public class player_movement : MonoBehaviour
             movement.y = Input.GetAxisRaw("Vertical");
             gameObject.GetComponent<Rigidbody2D>().MovePosition(deadscreen.position);
         }
+        else
+        {
+            transform.position = deadscreen.position;
+        }
 
         //character moving animation
         if(movement.x != 0 || movement.y != 0)//if moving, play animation

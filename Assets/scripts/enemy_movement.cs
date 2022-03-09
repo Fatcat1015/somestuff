@@ -11,8 +11,7 @@ public class enemy_movement : MonoBehaviour
 
     private GameObject player;
 
-    private Vector2 random_pos;
-    private Vector2 destination;
+    public Vector2 direction;
 
     public bool seeking_player = false;
 
@@ -20,23 +19,20 @@ public class enemy_movement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Setenemyvalue();
-
+        setwander_destination();
     }
 
     private void FixedUpdate()
     {
+
         if (!seeking_player)//wander
         {
-            transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+
+            transform.Translate(direction * speed/2 * Time.deltaTime);
         }
         else
         {
             seekplayer();
-        }
-
-        if (Vector2.Distance(transform.position, destination) <= speed - 0.0001)//arrives at destination
-        {
-            StartCoroutine(wander());
         }
     }
 
@@ -49,23 +45,39 @@ public class enemy_movement : MonoBehaviour
 
     public void seekplayer()//go towards the player
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed * Time.deltaTime);
     }
 
-    public IEnumerator wander()
+    private IEnumerator wander()
     {
-        yield return new WaitForSeconds(1);
-        random_pos.x = transform.position.x + Random.Range(-10.0f, 10.0f);
-        random_pos.y = transform.position.y + Random.Range(-10.0f, 10.0f);
-        destination = random_pos;
+        //Debug.Log("wanderrunning");
+        yield return new WaitForSeconds(3f);
+        direction = new Vector2(0, 0);
+        yield return new WaitForSeconds(1f);
+        setwander_destination();
+    }
+
+    public void setwander_destination()
+    {
+        //Debug.Log("wrunning");
+        float rn = Random.Range(0, 10);
+        if (rn < 2.5) direction = Vector2.down;
+        else if (rn < 5) direction = Vector2.up;
+        else if (rn < 7.5) direction = Vector2.left;
+        else if (rn <= 10) direction = Vector2.right;
+        StartCoroutine(wander());
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))//colliding with player
         {
-            Debug.Log("damage");
             player.GetComponent<Health>().Damage(damage);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        direction = new Vector2(-direction.x, -direction.y);
     }
 }

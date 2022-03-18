@@ -23,6 +23,15 @@
       },
       "url": "https://packages-v2.unity.cn"
     },
+    "com.unity.2d.ik": {
+      "version": "3.0.2-preview.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "3.0.1"
+      },
+      "url": "https://packages-v2.unity.cn"
+    },
     "com.unity.2d.path": {
       "version": "4.0.2",
       "depth": 1,
@@ -71,6 +80,13 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {}
+    },
+    "com.unity.cinemachine": {
+      "version": "2.9.0-pre.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages-v2.unity.cn"
     },
     "com.unity.collab-proxy": {
       "version": "1.5.7",

@@ -10,7 +10,7 @@ public class player_movement : MonoBehaviour
 
     public bool dead = false;
 
-    public Animator pc_animator;
+    private Animator pc_animator;
 
     //Animation anim;
 
@@ -19,10 +19,18 @@ public class player_movement : MonoBehaviour
 
     public Transform deadscreen;
 
+    private GameObject player;
+
+    private bool face_left = false;
+    private bool face_right = true;
+    private float diff;
+
     void Start()
     {
         //anim = GetComponent<Animation>();
         pc_animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("playercharacter");
+        player.name = "Self";
     }
 
     void Update()
@@ -41,8 +49,32 @@ public class player_movement : MonoBehaviour
         {
             transform.position = deadscreen.position;
         }
+         diff = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
+        if ( diff < 0)
+        {
+            face_left = true;
+            if (face_right)
+            {
+                face_right = false;
+                Flip();
+            }
+        }
+        if (diff > 0)
+        {
+            face_right = true;
+            if (face_left)
+            {
+                face_left = false;
+                Flip();
+            }
+        }
 
-        //character moving animation
+        if (Input.GetKeyDown(KeyCode.E)) {
+            pc_animator.SetBool("throw", true);
+            StartCoroutine(cooldown());
+        }
+
+        /*//character moving animation
         if(movement.x != 0 || movement.y != 0)//if moving, play animation
         {
             //pc_animator.enabled = true;
@@ -79,7 +111,7 @@ public class player_movement : MonoBehaviour
             pc_animator.SetInteger("left", 0);
             pc_animator.SetInteger("up", 0);
             //pc_animator.enabled = false;
-        }
+        }*/
 
     }
 
@@ -88,5 +120,15 @@ public class player_movement : MonoBehaviour
     	rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //move player
     }
 
+    void Flip()
+    {
+        player.transform.Rotate(0, 180, 0, Space.Self);
+    }
 
+    IEnumerator cooldown()
+    {
+        yield return new WaitForSeconds(0.333f);
+        pc_animator.SetBool("throw", false);
+
+    }
 }

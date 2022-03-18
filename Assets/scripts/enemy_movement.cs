@@ -15,11 +15,18 @@ public class enemy_movement : MonoBehaviour
 
     public bool seeking_player = false;
 
+    private bool face_left = true;
+    private bool face_right = false;
+
+    private Animator ani;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Setenemyvalue();
         setwander_destination();
+        gameObject.name = "Self";
+        ani = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -27,13 +34,41 @@ public class enemy_movement : MonoBehaviour
 
         if (!seeking_player)//wander
         {
-
-            transform.Translate(direction * speed/2 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, transform.position + new Vector3(direction.x, direction.y, 0), speed * Time.deltaTime);
+            ani.SetBool("attack", false);
         }
         else
         {
             seekplayer();
+            ani.SetBool("attack", true);
         }
+    }
+
+    private void Update()
+    {
+        if (0 < direction.x && direction.x >=1)
+        {
+            face_left = true;
+            if (face_right)
+            {
+                face_right = false;
+                Flip();
+            }
+        }
+        if (0 > direction.x && direction.x <= -1)
+        {
+            face_right = true;
+            if (face_left)
+            {
+                face_left = false;
+                Flip();
+            }
+        }
+    }
+
+    void Flip()
+    {
+        gameObject.transform.Rotate(0, 180, 0, Space.Self);
     }
 
     private void Setenemyvalue()//set health and etc
@@ -45,12 +80,13 @@ public class enemy_movement : MonoBehaviour
 
     public void seekplayer()//go towards the player
     {
+        direction.x = player.transform.position.x - transform.position.x;
         transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed * Time.deltaTime);
+
     }
 
     private IEnumerator wander()
     {
-        //Debug.Log("wanderrunning");
         yield return new WaitForSeconds(3f);
         direction = new Vector2(0, 0);
         yield return new WaitForSeconds(1f);
@@ -59,11 +95,10 @@ public class enemy_movement : MonoBehaviour
 
     public void setwander_destination()
     {
-        //Debug.Log("wrunning");
-        float rn = Random.Range(0, 10);
-        if (rn < 2.5) direction = Vector2.down;
-        else if (rn < 5) direction = Vector2.up;
-        else if (rn < 7.5) direction = Vector2.left;
+        float rn = Random.Range(3, 10);
+        if (rn < 1.5) direction = Vector2.down;
+        else if (rn < 3) direction = Vector2.up;
+        else if (rn < 7) direction = Vector2.left;
         else if (rn <= 10) direction = Vector2.right;
         StartCoroutine(wander());
     }
@@ -74,10 +109,16 @@ public class enemy_movement : MonoBehaviour
         {
             player.GetComponent<Health>().Damage(damage);
         }
+        
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D (Collider2D collision)
     {
-        direction = new Vector2(-direction.x, -direction.y);
+        if (collision.CompareTag("map"))//colliding with tilemap
+        {
+            StopAllCoroutines();
+            direction = new Vector2(-direction.x, -direction.y);
+            StartCoroutine(wander());
+            Debug.Log(direction);
+        }
     }
 }

@@ -8,6 +8,11 @@ TagManager:
   - Exit
   - Enemy
   - Soda
+  - Flash
+  - playercharacter
+  - map
+  - item
+  - global_light
   layers:
   - Default
   - TransparentFX
@@ -18,7 +23,7 @@ TagManager:
   - 
   - 
   - BlockingLayer
-  - 
+  - Player
   - 
   - 
   - 

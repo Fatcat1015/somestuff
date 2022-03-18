@@ -6,13 +6,15 @@ public class player_flashlight : MonoBehaviour
 {
     private GameObject lightarea = default;
 
-    private bool flashlight = false;
-    public float timeTolight = 2f;
+    public bool flashlight = true;
+    public float timeTolight = 5f;
     public float lighttimer = 0;
     private bool distract_cd = false;
     public GameObject projectile;
     public Transform spawnpoint;
     public bool activated = false;
+    public float timeleft = 0;
+    public float FlashCD = 3;
 
     void Start()
     {
@@ -22,17 +24,23 @@ public class player_flashlight : MonoBehaviour
 
     void Update()
     {
+        lightarea.SetActive(activated);
+        timeleft = (timeTolight - lighttimer) / timeTolight;
         if (flashlight)
         {
             if (Input.GetKeyDown(KeyCode.Space))//determine if light
             {
-                Light();
+                activated = true;
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                Deactivate_Light();
+                activated = false;
             }
+        }
+        else
+        {
+            activated = false;
         }
         
 
@@ -51,49 +59,39 @@ public class player_flashlight : MonoBehaviour
         }
 
         //timer function
-        if(flashlight && activated)//timer
+        if(flashlight)//timer
         {
-            lighttimer += Time.deltaTime;
-        }else if (flashlight)
-        {
-            lighttimer -= 2*Time.deltaTime;
+            if (activated) lighttimer += Time.deltaTime;
+            else if (lighttimer <= 0) lighttimer = 0;
+            else if (lighttimer > 0) lighttimer -= (6 / 5 * Time.deltaTime);
         }
         else
         {
-            lighttimer -= Time.deltaTime;
+            if (lighttimer >= 0) lighttimer -= Time.deltaTime / 2;
+            else lighttimer = 0;
         }
 
-        if(lighttimer >= timeTolight)//reset timer
+        if(lighttimer >= timeTolight)// timer
         {
-            lighttimer = 0;
             flashlight = false;
-            StartCoroutine(cooldown());
-            //lightarea.SetActive(flashlight);
+            //StartCoroutine(cooldown());
         }
+
+        if (lighttimer == 0) flashlight = true; 
 
         //mouse rotation functions:
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
+
+
     }
 
     IEnumerator cooldown()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(FlashCD);
         flashlight = true;
-    }
-
-    void Light()//light function
-    {
-        activated = true;
-        lightarea.SetActive(flashlight);
-    }
-
-    void Deactivate_Light()//disable light funciton
-    {
-        activated = false;
-        lightarea.SetActive(flashlight);
     }
 
     void Distract()

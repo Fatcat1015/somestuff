@@ -34,7 +34,6 @@ public class projectile_fire : MonoBehaviour
     void Explode()//exploding functions
     {
         rb.mass = 10;
-        Debug.Log("explo");
         Instantiate(explosion, spawn_ex.position, spawn_ex.rotation);
         Destroy(gameObject);
     }

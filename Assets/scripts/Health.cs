@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int health = 100;
-    private int Max_health = 100;//max health
+    [SerializeField] private float health = 100;
+    public float Max_health = 100;//max health
+    public float h_left = 1;
     private float cooldowntimer = 0f;
     [SerializeField] private float cooldown = 0.5f;
+    private bool invincible = false;
 
     void Update()
     {
@@ -15,6 +18,8 @@ public class Health : MonoBehaviour
         {
             Die();
         }
+
+        h_left = health / Max_health;
     }
 
     public void SetHealth(int Maxhealth, int health)//set health
@@ -46,16 +51,19 @@ public class Health : MonoBehaviour
 
     public void Damage(int amount)//damage
     {
-        if (amount < 0)
+        if (!invincible)
         {
-            throw new System.ArgumentOutOfRangeException("cannot have negative Damage");//error
+            if (amount < 0)
+            {
+                throw new System.ArgumentOutOfRangeException("cannot have negative Damage");//error
+            }
+            else
+            {
+                this.health -= amount;
+                StartCoroutine(VisualIndicator(Color.red));
+            }
         }
-        else
-        {
-            this.health -= amount;
-            StartCoroutine(VisualIndicator(Color.red));
-        }
-
+       
     }
 
     public void Heal(int amount)//heal
@@ -79,9 +87,21 @@ public class Health : MonoBehaviour
 
     private IEnumerator VisualIndicator(Color color)
     {
-        GetComponent<SpriteRenderer>().color = color;
-        yield return new WaitForSeconds(0.15f);
-        GetComponent<SpriteRenderer>().color = Color.white;
+        invincible = true;
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].color = color;
+            
+        }
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].color = Color.white;
+        }
+        invincible = false;
+
     }
 
     private void Die()//die

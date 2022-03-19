@@ -118,7 +118,6 @@ public class enemy_movement : MonoBehaviour
             StopAllCoroutines();
             direction = new Vector2(-direction.x, -direction.y);
             StartCoroutine(wander());
-            Debug.Log(direction);
         }
     }
 }

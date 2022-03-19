@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6726802ee494c0f97c5a03d85f71ec, type: 3}
   m_Name: anglerfish
   m_EditorClassIdentifier: 
-  hp: 50
-  damage: 20
+  hp: 10
+  damage: 2
   speed: 10
+  detect_rad: 15

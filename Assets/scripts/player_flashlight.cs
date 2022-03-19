@@ -82,7 +82,7 @@ public class player_flashlight : MonoBehaviour
         //mouse rotation functions:
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+        transform.rotation = Quaternion.LookRotation(  Vector3.forward, mousePos - transform.position);
 
 
 

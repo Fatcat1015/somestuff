@@ -9,4 +9,5 @@ public class enemydata : ScriptableObject
     public int hp;
     public int damage;
     public float speed;
+    public int detect_rad;
 }

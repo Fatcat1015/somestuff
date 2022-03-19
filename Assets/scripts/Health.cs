@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float health = 100;
-    public float Max_health = 100;//max health
-    public float h_left = 1;
+    [SerializeField] private int health = 5;
+    public int Max_health = 5;//max health
+    public int h_left = 5;
     private float cooldowntimer = 0f;
     [SerializeField] private float cooldown = 0.5f;
     private bool invincible = false;
+
+    public GameObject loot_heal;
+    public GameObject loot_bomb;
 
     void Update()
     {
@@ -19,7 +22,7 @@ public class Health : MonoBehaviour
             Die();
         }
 
-        h_left = health / Max_health;
+        h_left = health;
     }
 
     public void SetHealth(int Maxhealth, int health)//set health
@@ -112,6 +115,15 @@ public class Health : MonoBehaviour
         }
         else
         {
+            var loot = Random.Range(1, 3);
+            if (loot < 1.5)
+            {
+                Instantiate(loot_heal, transform.position,transform.rotation);
+            }
+            else
+            {
+                Instantiate(loot_bomb, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
         }
         

@@ -16,8 +16,11 @@ public class enemy_detect : MonoBehaviour
     public float aggro = 7;
     public float original = 5;
 
+    [SerializeField] private enemydata data;
+
     void Start()
     {
+        Setenemyvalue();
         detect_range = GetComponent<CircleCollider2D>();
         enemy = transform.parent.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -57,5 +60,11 @@ public class enemy_detect : MonoBehaviour
             if_found_player = true;
             enemy.GetComponent<enemy_movement>().seeking_player = true;
         }
+    }
+
+    private void Setenemyvalue()//set radius
+    {
+        aggro = data.detect_rad+3;
+        original = data.detect_rad;
     }
 }

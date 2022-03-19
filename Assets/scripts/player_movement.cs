@@ -43,7 +43,7 @@ public class player_movement : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            gameObject.GetComponent<Rigidbody2D>().MovePosition(deadscreen.position);
+            //gameObject.GetComponent<Rigidbody2D>().MovePosition(deadscreen.position);
         }
         else
         {
@@ -117,7 +117,9 @@ public class player_movement : MonoBehaviour
 
     void FixedUpdate()
     {
-    	rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //move player
+    	//rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //move player
+        //rb.AddForce(movement,ForceMode2D.Impulse);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     void Flip()

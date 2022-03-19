@@ -12,7 +12,7 @@ public class lightarea_script : MonoBehaviour
         if(collider.GetComponent<Health>()!= null && collider.CompareTag("Enemy"))
         {
             Health health = collider.GetComponent<Health>();
-            health.ContinuousDamage(damage);
+            health.Damage(damage);
         }
     }
 

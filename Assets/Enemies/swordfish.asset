@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6726802ee494c0f97c5a03d85f71ec, type: 3}
   m_Name: swordfish
   m_EditorClassIdentifier: 
-  hp: 20
-  damage: 5
-  speed: 5
+  hp: 3
+  damage: 1
+  speed: 7
+  detect_rad: 10

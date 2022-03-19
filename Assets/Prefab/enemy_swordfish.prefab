@@ -103,7 +103,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.2006102, y: 0.426243}
+  m_Offset: {x: 2.929359, y: 0.32085133}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -114,7 +114,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2927618, y: 0.593938}
+  m_Size: {x: 4.7502594, y: 1.7268887}
   m_EdgeRadius: 0
 --- !u!50 &3400273536143075162
 Rigidbody2D:
@@ -153,6 +153,10 @@ MonoBehaviour:
   Max_health: 100
   h_left: 1
   cooldown: 0.5
+  loot_heal: {fileID: 6878248812264025374, guid: e6ba2d38648b00943a45aa5cb9c6518f,
+    type: 3}
+  loot_bomb: {fileID: 3652278681141806723, guid: ac8ef8237ed730e45a9f78093ad7a216,
+    type: 3}
 --- !u!114 &8725111470665270560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +181,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3400273536143075158}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -242,7 +246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4351772771896240593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.56, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3400273536143075163}
@@ -279,9 +283,10 @@ MonoBehaviour:
   detect_range: {fileID: 4351772771896240594}
   enemy: {fileID: 3400273536143075158}
   if_found_player: 0
-  player: {fileID: 0}
+  player: {fileID: -7675411117639720413, guid: 649277d81ca4a134fb5f6f7d91f26ebd, type: 3}
   aggro: 13
   original: 10
+  data: {fileID: 11400000, guid: b448f452990d1dc4198ea8cc598491a5, type: 2}
 --- !u!50 &4351772771896240597
 Rigidbody2D:
   serializedVersion: 4

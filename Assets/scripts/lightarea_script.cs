@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class lightarea_script : MonoBehaviour
 {
-    [SerializeField] private int damage = 20;
+    [SerializeField] private int damage = 1;
 
 
     private void OnTriggerStay2D(Collider2D collider)//do damage when staying in light

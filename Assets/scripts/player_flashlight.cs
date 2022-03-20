@@ -9,12 +9,11 @@ public class player_flashlight : MonoBehaviour
     public bool flashlight = true;
     public float timeTolight = 5f;
     public float lighttimer = 0;
-    private bool distract_cd = false;
     public GameObject projectile;
     public Transform spawnpoint;
     public bool activated = false;
     public float timeleft = 0;
-    public float FlashCD = 3;
+    public int bombCount = 3;
 
     void Start()
     {
@@ -46,16 +45,11 @@ public class player_flashlight : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.E))//throw distraction
         {
-            if(distract_cd != true)
+            if(bombCount != 0)
             {
-                distract_cd = true;
+                bombCount -= 1;
                 Distract();
             }
-        }
-
-        if (Input.GetKeyUp(KeyCode.E))//throw distraction
-        {
-            distract_cd = false;
         }
 
         //timer function
@@ -74,7 +68,6 @@ public class player_flashlight : MonoBehaviour
         if(lighttimer >= timeTolight)// timer
         {
             flashlight = false;
-            //StartCoroutine(cooldown());
         }
 
         if (lighttimer == 0) flashlight = true; 
@@ -90,7 +83,7 @@ public class player_flashlight : MonoBehaviour
 
     IEnumerator cooldown()
     {
-        yield return new WaitForSeconds(FlashCD);
+        yield return new WaitForSeconds(3);
         flashlight = true;
     }
 

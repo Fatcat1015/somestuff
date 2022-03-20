@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int health = 5;
+    [SerializeField] public int health = 5;
     public int Max_health = 5;//max health
     public int h_left = 5;
     private float cooldowntimer = 0f;
-    [SerializeField] private float cooldown = 0.5f;
+    [SerializeField] private float cooldown = 1f;
     private bool invincible = false;
 
     public GameObject loot_heal;
@@ -98,7 +98,7 @@ public class Health : MonoBehaviour
             sprites[i].color = color;
             
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(cooldown);
         for (int i = 0; i < sprites.Length; i++)
         {
             sprites[i].color = Color.white;
@@ -115,7 +115,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            var loot = Random.Range(1, 3);
+            var loot = Random.Range(0, 3);
             if (loot < 1.5)
             {
                 Instantiate(loot_heal, transform.position,transform.rotation);

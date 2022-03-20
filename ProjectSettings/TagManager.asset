@@ -13,6 +13,8 @@ TagManager:
   - map
   - item
   - global_light
+  - bomb_pickup
+  - heal_pickup
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - 
   - BlockingLayer
   - Player
-  - 
+  - Items
   - 
   - 
   - 

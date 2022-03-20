@@ -21,16 +21,19 @@ public class HealthUI : MonoBehaviour
         Image[] images = GetComponentsInChildren<Image>();
 
         
-        for (int i = PHealth.h_left; i < images.Length; i++)
+        for (int i = PHealth.health; i < images.Length; i++)
         {
             images[i].sprite = emptyheart;
 
         }
 
-       for (int i = 0; i < PHealth.h_left; i++)
+        if (PHealth.health <= 5)
         {
-            images[i].sprite = fullheart;
+            for (int i = 0; i < PHealth.health; i++)
+            {
+                images[i].sprite = fullheart;
 
+            }
         }
     }
 }

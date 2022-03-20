@@ -10,12 +10,17 @@ public class AlgeaHeal : MonoBehaviour
     {
         if (collision.CompareTag("Player")&&!used)
         {
-            collision.GetComponent<Health>().Heal(healamount);
-            GetComponent<SpriteRenderer>().color = Color.black;
-            var children = new List<GameObject>();
-            foreach (Transform child in transform) children.Add(child.gameObject);
-            children.ForEach(child => Destroy(child));
-            used = true;
+            if (collision.GetComponent<Health>().health < 5)
+            {
+                collision.GetComponent<Health>().Heal(healamount);
+                GetComponent<SpriteRenderer>().color = Color.gray;
+                var children = new List<GameObject>();
+                foreach (Transform child in transform) children.Add(child.gameObject);
+                children.ForEach(child => Destroy(child));
+                used = true;
+
+            }
+            
         }
     }
 }

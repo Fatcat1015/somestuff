@@ -133,4 +133,26 @@ public class player_movement : MonoBehaviour
         pc_animator.SetBool("throw", false);
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.CompareTag("bomb_pickup"))
+        {
+            if (GetComponentInChildren<player_flashlight>().bombCount < 3)
+            {
+                GetComponentInChildren<player_flashlight>().bombCount += 1;
+                Destroy(collision.gameObject);
+            }
+        }
+
+        else if (collision.CompareTag("heal_pickup"))
+        {
+            if (GetComponent<Health>().health < GetComponent<Health>().Max_health)
+            {
+                GetComponent<Health>().Heal(1);
+                Destroy(collision.gameObject);
+            }
+        }
+    }
 }

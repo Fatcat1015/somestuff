@@ -159,7 +159,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.64, y: 1.5300934}
+    oldSize: {x: 7.28, y: 3.0601869}
     newSize: {x: 3.35, y: 1.410086}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -290,6 +290,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6461562116876158531, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.57
+      objectReference: {fileID: 0}
     - target: {fileID: -4880392407034744955, guid: b044291e84492f1409d5ea40377c89f1,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -388,7 +393,7 @@ PrefabInstance:
     - target: {fileID: -2583084951121650981, guid: b044291e84492f1409d5ea40377c89f1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.26
+      value: -20.2
       objectReference: {fileID: 0}
     - target: {fileID: -2583084951121650981, guid: b044291e84492f1409d5ea40377c89f1,
         type: 3}
@@ -560,15 +565,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 8.57
       objectReference: {fileID: 0}
+    - target: {fileID: 7636151144060561471, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.2436733
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636151144060561471, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.837018
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636151144060561471, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6708154
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636151144060561471, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636151144060561471, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.74162436
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636151144060561471, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8760484263251622406, guid: b044291e84492f1409d5ea40377c89f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.619387
+      value: -29.909662
       objectReference: {fileID: 0}
     - target: {fileID: 8760484263251622406, guid: b044291e84492f1409d5ea40377c89f1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.373934
+      value: 3.5322857
       objectReference: {fileID: 0}
     - target: {fileID: 8760484263251622406, guid: b044291e84492f1409d5ea40377c89f1,
         type: 3}
@@ -619,6 +654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004904221545257325, guid: b044291e84492f1409d5ea40377c89f1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 19.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 1230871556849718303, guid: b044291e84492f1409d5ea40377c89f1,
@@ -900,7 +940,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.35, y: 1.410086}
+    oldSize: {x: 6.7, y: 2.820172}
     newSize: {x: 3.35, y: 1.410086}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -969,7 +1009,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958812725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.19, y: -3.51, z: 0}
+  m_LocalPosition: {x: -19.92, y: -5.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1043,7 +1083,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.790859
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
